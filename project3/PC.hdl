@@ -14,9 +14,6 @@ CHIP PC {
     OUT out[16];
     
     PARTS:
-    Register(in=nextPC, load=true, out=out, out=currentPC);
-    Inc16(in=currentPC, out=incrementedPC);
-
     // sel[1] = not reset * not load
     Not(in=reset, out=notReset);
     Not(in=load, out=notLoad);
@@ -28,5 +25,7 @@ CHIP PC {
     And(a=notReset, b=temp, out=sel0);
 
     Mux4Way16(a=false, b=in, c=incrementedPC, d=currentPC, sel[1]=sel1, sel[0]=sel0, out=nextPC);
+    Register(in=nextPC, load=true, out=out, out=currentPC);
+    Inc16(in=currentPC, out=incrementedPC);
 }
     
