@@ -7,9 +7,17 @@
 //i: El iterador del loop
 //R3: Donde se va haciendo la suma
 
-@6 // A = 6
-D=A // D = 6
-@R0 // A = 0
-M=D // RAM[A, que es 0] = 6
+@6
+D=A
+@R0
+M=D
 @R1
-M=D+1 // RAM[1] = 7
+M=D+1
+@i // Loop desde R1 hasta 0
+M=D+1
+@R0
+D=M
+@R2 // R2 = sum
+M=D+M
+@i
+M=M-1
